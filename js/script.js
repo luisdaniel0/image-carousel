@@ -8,13 +8,13 @@ const leftBtn = document.querySelector('.left-btn')
 const rightBtn=document.querySelector('.right-btn')
 const dotButtons = document.querySelector('.carousel-nav')
 const dots = Array.from(dotButtons.children)
+console.log(dots)
 
 
 leftBtn.addEventListener("click",()=>{
-    console.log("left works")
     if(currentSlide<=0){
         images[currentSlide].classList.add('hidden')
-        currentSlide=4
+        currentSlide= images.length -1
         images[currentSlide].classList.remove('hidden')
     } else{
         images[currentSlide].classList.add('hidden')
@@ -27,6 +27,9 @@ rightBtn.addEventListener("click",()=>{
     //images[currentSlide] gets the specific <li> element at that position
     //.classList.add('hidden') applies the CSS class that makes display: none
     images[currentSlide].classList.add('hidden')
+    // NEW: Remove highlight from current dot BEFORE changing currentSlide
+    dots[currentSlide].classList.remove('current-slide')
+
     if(currentSlide>=images.length-1){
         currentSlide=0;
     } else{
@@ -35,6 +38,8 @@ rightBtn.addEventListener("click",()=>{
     }
 
     images[currentSlide].classList.remove('hidden')
+    // NEW: Add highlight to new dot AFTER changing currentSlide
+    dots[currentSlide].classList.add('current-slide')
 
 })
 
