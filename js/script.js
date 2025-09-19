@@ -12,15 +12,21 @@ console.log(dots)
 
 
 leftBtn.addEventListener("click",()=>{
+    // Step 1: Remove highlight from OLD dot (before changing currentSlide)
+    dots[currentSlide].classList.remove('current-slide')
+    
+    // Step 2: Hide current slide and update currentSlide
+    images[currentSlide].classList.add('hidden')
+    
     if(currentSlide<=0){
-        images[currentSlide].classList.add('hidden')
-        currentSlide= images.length -1
-        images[currentSlide].classList.remove('hidden')
+        currentSlide = images.length - 1
     } else{
-        images[currentSlide].classList.add('hidden')
         currentSlide--
-        images[currentSlide].classList.remove('hidden')
     }
+    
+    // Step 3: Show new slide and highlight NEW dot (after changing currentSlide)
+    images[currentSlide].classList.remove('hidden')
+    dots[currentSlide].classList.add('current-slide')
 })
 
 rightBtn.addEventListener("click",()=>{
